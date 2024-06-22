@@ -7,9 +7,10 @@ Spring Boot application exposing API to shorten URLs, tinyurl/bitly style.
 Utilizing:
 - **Redis** for quick fetching of the original URL - The shortened URL maps to the original URL.
 - **MongoDB** for saving users, and "high-level" statistics of shortened URLs usage for each user, such as how many total clicks, and clicks distribution per month:<br>
-  <img src="https://github.com/roeishc/tinyurl/assets/95538414/d1fc4bca-2038-485c-8390-ce5473672137" width=250>
+  <img src="https://github.com/roeishc/tinyurl/assets/95538414/8bb70327-0122-4e53-903b-6d4b30cca68f" width=250>
 - **Cassandra** for precise tracking of all clicks for all users (exact time of each click):<br>
-  <img src="https://github.com/roeishc/tinyurl/assets/95538414/0ac2f967-2dba-4791-a082-1e0cef45ca23" width=250>
+  <img src="https://github.com/roeishc/tinyurl/assets/95538414/fb3d6aaa-6815-432a-b281-50da465219fb" width=250>
+
 
 <br>
 <a href="https://roei-tinyurl.runmydocker-app.com/swagger-ui.html">Swagger UI</a> available for:
