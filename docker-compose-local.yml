@@ -1,0 +1,32 @@
+version: "3"
+services:
+  cassandra:
+    image: "cassandra:3.11.9"
+    ports:
+      - "9042:9042"
+    environment:
+      - "MAX_HEAP_SIZE=256M"
+      - "HEAP_NEWSIZE=128M"
+    volumes:
+      - ./init-cassandra.cql:/init-cassandra.cql  # mount the initialization script
+    command: ["cassandra", "-f", "-R", "-C", "-Dcassandra.load_ring_state=false"]
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    privileged: true
+  mongo:
+    image: mongo:4.0
+    ports:
+      - "27017:27017"
+    privileged: true
+  appserver:
+    container_name: tinyurl-server
+    hostname: localhost
+    image: tinyurl
+    ports:
+      - "8080:8080"
+    depends_on:
+      - cassandra
+      - redis
+      - mongo
