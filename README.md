@@ -2,7 +2,7 @@
 
 Spring Boot application exposing API to shorten URLs, tinyurl/bitly style.
 <br><br>
-<a href="https://roei-tinyurl.runmydocker-app.com/swagger-ui.html">Swagger UI</a> running on <a href="https://runmydocker.com/">runmydocker.com</a>.
+<a href="https://roei-tinyurl.runmydocker-app.com/swagger-ui.html">Swagger UI</a> (may return 500 on first try, just refresh the page) running on <a href="https://runmydocker.com/">runmydocker.com</a>.
 <br><br>
 Utilizing:
 - **Redis** for quick fetching of the original URL - The shortened URL maps to the original URL.
