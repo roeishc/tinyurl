@@ -4,12 +4,18 @@ Spring Boot application exposing API to shorten URLs, tinyurl/bitly style.
 <br><br>
 <a href="https://roei-tinyurl.runmydocker-app.com/swagger-ui.html">Swagger UI</a> (may return 500 on first try, just refresh the page) running on <a href="https://runmydocker.com/">runmydocker.com</a>.
 <br><br>
-Utilizing:
+The project utilizes:
 - **Redis** for quick fetching of the original URL - The shortened URL maps to the original URL.
 - **MongoDB** for saving users, and "high-level" statistics of shortened URLs usage for each user, such as how many total clicks, and clicks distribution per month:<br>
   <img src="https://github.com/roeishc/tinyurl/assets/95538414/8bb70327-0122-4e53-903b-6d4b30cca68f" width=250>
 - **Cassandra** for precise tracking of all clicks for all users (exact time of each click):<br>
   <img src="https://github.com/roeishc/tinyurl/assets/95538414/fb3d6aaa-6815-432a-b281-50da465219fb" width=250>
+
+<br>
+
+To get a shortened URL, open <a href="https://roei-tinyurl.runmydocker-app.com/swagger-ui.html">Swagger UI</a>. Under `app-controller` open the `/tiny` POST request, add the URL and a username (user  will be created if not exists yet), and click "Try it out!". The shortened URL will be under the Response Body:
+<br><br>
+<img width="730" alt="image" src="https://github.com/roeishc/tinyurl/assets/95538414/96a9a9a4-02ff-4e26-b71c-e0675ab0abfc">
 
 
 <br>
