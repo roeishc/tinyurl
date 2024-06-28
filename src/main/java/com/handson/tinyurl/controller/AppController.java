@@ -76,13 +76,11 @@ public class AppController {
             i++;
         }
         if (i == MAX_RETRIES) throw new RuntimeException("SPACE IS FULL");
-        return baseUrl + tinyCode + "/";
+        return baseUrl + "tiny/" + tinyCode + "/";
     }
 
-    @RequestMapping(value = {"/{tiny}", "/{tiny}/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"tiny/{tiny}", "tiny/{tiny}/"}, method = RequestMethod.GET)
     public ModelAndView getTiny(@PathVariable String tiny) throws JsonProcessingException {
-        if (tiny.startsWith("swagger-ui.html"))
-            return new ModelAndView("redirect:" + baseUrl + tiny);
         Object tinyRequestStr = redis.get(tiny);
         NewTinyRequest tinyRequest = om.readValue(tinyRequestStr.toString(), NewTinyRequest.class);
         if (tinyRequest.getLongUrl() != null) {
