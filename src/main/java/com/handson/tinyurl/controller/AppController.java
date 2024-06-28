@@ -69,6 +69,8 @@ public class AppController {
     public String generate(@RequestBody NewTinyRequest request) throws JsonProcessingException {
         String tinyCode = generateTinyCode();
         int i = 0;
+        request.setLongUrl(request.getLongUrl().startsWith("http://") ?
+                request.getLongUrl().substring(7) : request.getLongUrl());
         while (!redis.set(tinyCode, om.writeValueAsString(request)) && i < MAX_RETRIES) {
             tinyCode = generateTinyCode();
             i++;
@@ -95,7 +97,9 @@ public class AppController {
                         .longUrl(tinyRequest.getLongUrl())
                         .build());
             }
-            return new ModelAndView("redirect:" + tinyRequest.getLongUrl());
+            String longUrl = tinyRequest.getLongUrl();
+            return new ModelAndView("redirect:" + (longUrl.startsWith("https://") ?
+                    longUrl : "https://" + longUrl));
         } else {
             throw new RuntimeException(tiny + " not found");
         }
