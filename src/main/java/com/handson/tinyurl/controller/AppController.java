@@ -79,7 +79,7 @@ public class AppController {
         return baseUrl + tinyCode + "/";
     }
 
-    @RequestMapping(value = "/{tiny}/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/{tiny}", "/{tiny}/"}, method = RequestMethod.GET)
     public ModelAndView getTiny(@PathVariable String tiny) throws JsonProcessingException {
         Object tinyRequestStr = redis.get(tiny);
         NewTinyRequest tinyRequest = om.readValue(tinyRequestStr.toString(), NewTinyRequest.class);
